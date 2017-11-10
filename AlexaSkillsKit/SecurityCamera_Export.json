@@ -1,0 +1,151 @@
+{
+    "intents": [
+        {
+            "name": "DisableCamera",
+            "samples": [
+                "stop the camera",
+                "disable the camera",
+                "switch the camera off",
+                "stop using the camera",
+                "switch off the camera",
+                "disable camera"
+            ],
+            "slots": []
+        },
+        {
+            "name": "UseCamera",
+            "samples": [
+                "use the camera",
+                "take a picture",
+                "look around",
+                "take a pic",
+                "have a look around"
+            ],
+            "slots": []
+        },
+        {
+            "name": "HaveSeen",
+            "samples": [
+                "what have you seen",
+                "what did you see",
+                "what did you last see",
+                "what was the last thing you saw",
+                "describe what you saw",
+                "describe what you have seen",
+                "tell me what you saw"
+            ],
+            "slots": []
+        },
+        {
+            "name": "EnableCamera",
+            "samples": [
+                "start the camera",
+                "enable the camera",
+                "switch the camera on",
+                "switch on the camera",
+                "enable camera"
+            ],
+            "slots": []
+        },
+        {
+            "name": "IndexFace",
+            "samples": [
+                "learn to recognize {name}",
+                "index face {name}",
+                "index face",
+                "index face for {name}",
+                "this is {name}",
+                "add a face",
+                "add my face",
+                "learn a face",
+                "learn a new face"
+            ],
+            "slots": [
+                {
+                    "name": "name",
+                    "type": "AMAZON.US_FIRST_NAME",
+                    "samples": [
+                        "My name is {name}",
+                        "It\u0027s {name}"
+                    ]
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "prompts": [
+        {
+            "id": "Confirm.Intent-IndexFace",
+            "promptVersion": "1.0",
+            "definitionVersion": "1.0",
+            "variations": [
+                {
+                    "type": "PlainText",
+                    "value": "Are you ready to take a picture of {name}?"
+                }
+            ]
+        },
+        {
+            "id": "Elicit.Intent-IndexFace.IntentSlot-name",
+            "promptVersion": "1.0",
+            "definitionVersion": "1.0",
+            "variations": [
+                {
+                    "type": "PlainText",
+                    "value": "What is your name?"
+                },
+                {
+                    "type": "PlainText",
+                    "value": "Who\u0027s in the picture?"
+                }
+            ]
+        }
+    ],
+    "dialog": {
+        "version": "1.0",
+        "intents": [
+            {
+                "name": "DisableCamera",
+                "confirmationRequired": false,
+                "prompts": {},
+                "slots": []
+            },
+            {
+                "name": "UseCamera",
+                "confirmationRequired": false,
+                "prompts": {},
+                "slots": []
+            },
+            {
+                "name": "HaveSeen",
+                "confirmationRequired": false,
+                "prompts": {},
+                "slots": []
+            },
+            {
+                "name": "EnableCamera",
+                "confirmationRequired": false,
+                "prompts": {},
+                "slots": []
+            },
+            {
+                "name": "IndexFace",
+                "confirmationRequired": true,
+                "prompts": {
+                    "confirm": "Confirm.Intent-IndexFace"
+                },
+                "slots": [
+                    {
+                        "name": "name",
+                        "type": "AMAZON.US_FIRST_NAME",
+                        "elicitationRequired": true,
+                        "confirmationRequired": false,
+                        "prompts": {
+                            "elicit": "Elicit.Intent-IndexFace.IntentSlot-name"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
